@@ -22,18 +22,19 @@ jobs:
           libgpgme11-dev \
           squashfs-tools \
           libseccomp-dev \
-          pkg-config
+          pkg-config 
 
     - name: Install Singularity
       env:
         SINGULARITY_VERSION: 3.8.2
       run: |
         echo "Working with Singularity version ${SINGULARITY_VERSION}"
+        echo "Will download code from https://github.com/hpcng/singularity/releases/download/v{SINGULARITY_VERSION}/singularity-{SINGULARITY_VERSION}.tar.gz"
         export GOPATH=/tmp/go
         mkdir -p $GOPATH
         sudo mkdir -p /usr/local/var/singularity/mnt && \
-        mkdir -p $GOPATH/src/github.com/hpcng && \
-        cd $GOPATH/src/github.com/hpcng && \
+        mkdir -p "${GOPATH}/src/github.com/hpcng" && \
+        cd "${GOPATH}/src/github.com/hpcng" && \
         wget -qO- "https://github.com/hpcng/singularity/releases/download/v{SINGULARITY_VERSION}/singularity-{SINGULARITY_VERSION}.tar.gz" | \
         tar xzv && \
         cd singularity && \
