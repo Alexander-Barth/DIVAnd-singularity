@@ -31,7 +31,6 @@ jobs:
     - run: sudo apt-get install -y libjpeg8-dev 
     - run: sudo apt-get install -y libpng-dev 
     - run: sudo apt-get install -y libfreetype6-dev 
-    - run: 
 
     - name: Install Singularity
       env:
