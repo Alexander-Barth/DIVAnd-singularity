@@ -23,8 +23,13 @@ jobs:
           libgpgme11-dev \
           squashfs-tools \
           libseccomp-dev \ 
-          python3-dev libjpeg8-dev libpng-dev libfreetype6-dev \
           pkg-config 
+
+    - run: sudo apt-get install -y python3-dev 
+    - run: sudo apt-get install -y libjpeg8-dev 
+    - run: sudo apt-get install -y libpng-dev 
+    - run: sudo apt-get install -y libfreetype6-dev 
+
 
     - name: Install Singularity
       env:
