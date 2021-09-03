@@ -22,6 +22,7 @@ jobs:
           uuid-dev \
           libgpgme11-dev \
 
+    - run: sudo apt-get install -y apt-utils
     - run: sudo apt-get install -y zlib1g       
     - run: sudo apt-get install -y squashfs-tools 
     - run: sudo apt-get install -y libseccomp-dev 
@@ -30,6 +31,7 @@ jobs:
     - run: sudo apt-get install -y libjpeg8-dev 
     - run: sudo apt-get install -y libpng-dev 
     - run: sudo apt-get install -y libfreetype6-dev 
+    - run: 
 
     - name: Install Singularity
       env:
