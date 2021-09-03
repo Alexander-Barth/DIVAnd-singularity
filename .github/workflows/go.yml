@@ -23,7 +23,7 @@ jobs:
           libgpgme11-dev \
           squashfs-tools \
           libseccomp-dev \ 
-          zlib1g-dev \
+          zlib1g \
           pkg-config 
 
     - name: Install Singularity
