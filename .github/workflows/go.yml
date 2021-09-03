@@ -7,14 +7,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
 
-    - name: Set up Go 1.14
-      uses: actions/checkout@v2
-      uses: actions/setup-go@v2
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
       with:
         stable: 'false'
         go-version: '1.14' # The Go version to download (if necessary) and use.
-      run: go version
-      id: go
+    - run: go version
 
     - name: Install Dependencies
       run: |
