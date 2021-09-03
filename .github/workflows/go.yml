@@ -24,6 +24,7 @@ jobs:
           squashfs-tools \
           libseccomp-dev \ 
           zlib1g \
+          zlib1g-dev \ 
           pkg-config 
 
     - name: Install Singularity
