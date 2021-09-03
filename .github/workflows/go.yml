@@ -14,4 +14,4 @@ jobs:
           libssl-dev \
           uuid-dev \
           libgpgme11-dev 
-    - run: sudo apt show zlib1g
+    - run: sudo apt-get install -y zlib1g
