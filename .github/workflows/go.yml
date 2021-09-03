@@ -7,71 +7,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
 
-    - uses: actions/checkout@v2
-    - uses: actions/setup-go@v2
-      with:
-        stable: 'false'
-        go-version: '1.14' # The Go version to download (if necessary) and use.
-    - run: go version
-
     - name: Install Dependencies
       run: |
         sudo apt-get update && sudo apt-get install -y \
           build-essential \
           libssl-dev \
           uuid-dev \
-          libgpgme11-dev \
-
-    - run: sudo apt-get install -y apt-utils
-    - run: sudo apt-get install -y zlib1g       
-    - run: sudo apt-get install -y squashfs-tools 
-    - run: sudo apt-get install -y libseccomp-dev 
-    - run: sudo apt-get install -y pkg-config 
-    - run: sudo apt-get install -y python3-dev 
-    - run: sudo apt-get install -y libjpeg8-dev 
-    - run: sudo apt-get install -y libpng-dev 
-    - run: sudo apt-get install -y libfreetype6-dev 
-
-    - name: Install Singularity
-      env:
-        SINGULARITY_VERSION: 3.8.2
-      run: |
-        echo "Working with Singularity version ${SINGULARITY_VERSION}"
-        echo "Will download code from https://github.com/hpcng/singularity/releases/download/v${SINGULARITY_VERSION}/singularity-${SINGULARITY_VERSION}.tar.gz"
-        export GOPATH=/tmp/go
-        mkdir -p $GOPATH
-        sudo mkdir -p /usr/local/var/singularity/mnt && \
-        mkdir -p "${GOPATH}/src/github.com/hpcng" && \
-        cd "${GOPATH}/src/github.com/hpcng" && \
-        wget -qO- "https://github.com/hpcng/singularity/releases/download/v${SINGULARITY_VERSION}/singularity-${SINGULARITY_VERSION}.tar.gz" | \
-        tar xzv && \
-        echo "Finish decompressing archive" \
-        echo "Building singularity" \
-        ls && \
-        cd "singularity-${SINGULARITY_VERSION}" && \
-        ./mconfig -p /usr/local && \
-        make -C builddir && \
-        sudo make -C builddir install
-
-    - name: Check out code for the container build
-      uses: actions/checkout@v1
-
-    - name: Build Container
-      env:
-        SINGULARITY_RECIPE: Singularity
-        OUTPUT_CONTAINER: DIVAnd.sif
-      run: |
-       ls
-       if [ -f "${SINGULARITY_RECIPE}" ]; then
-            sudo -E singularity build ${OUTPUT_CONTAINER} ${SINGULARITY_RECIPE}
-       else
-           echo "${SINGULARITY_RECIPE} is not found."
-           echo "Present working directory: $PWD"
-           ls
-       fi
-
-    - name: Upload container
-      uses: actions/upload-artifact@v1
-      with:
-          name: DIVAnd.sif
-          path: DIVAnd.sif
+          libgpgme11-dev 
+    - run: sudo apt show zlib1g
